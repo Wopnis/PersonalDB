@@ -5,6 +5,10 @@
     {{error}}
   </div>
 
+  <div class="alert alert-info" *ngIf="message">
+    {{message}}
+  </div>
+
 
   <div
     class="form-control"
@@ -25,6 +29,7 @@
       </small>
     </div>
   </div>
+
   <div
     class="form-control"
     [ngClass]="{invalid: form.get('password').touched && form.get('password').invalid}"

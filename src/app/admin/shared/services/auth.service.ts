@@ -5,7 +5,7 @@ import {Observable, Subject, throwError} from 'rxjs';
 import {environment} from '../../../../environments/environment';
 import {catchError, tap} from 'rxjs/operators';
 
-@Injectable()
+@Injectable({providedIn: 'root'})
 export class AuthService {
   public error$: Subject<string> = new Subject<string>();
   constructor(private http: HttpClient) {}
@@ -66,3 +66,5 @@ export class AuthService {
 
 // 123456qwerty
 // `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${environment.apiKey}`
+
+// 'http://localhost:8000/users/login'
