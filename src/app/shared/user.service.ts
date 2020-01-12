@@ -18,7 +18,22 @@ export class UserService {
             date: new Date(user.date)
           };
         }));
+  }
+  getAll(): Observable<User[]> {
+    return this.http.get(`${environment.fbDbUrl}/users.json`)
+      .pipe(map((response:{[key: string]: any}) => {
+        return Object
+          .keys(response)
+        .map(key => ({
+          ...response[key],
+          id: key,
+          date: new Date(response[key].date)
+        }));
+      }));
+  }
 
+  remove(id: string): Observable<void> {
+    return this.http.delete<void >(`${environment.fbDbUrl}/users/${id}.json`);
   }
 }
 

@@ -18,3 +18,10 @@ export const environment: Environment = {
  * on performance if an error is thrown.
  */
 // import 'zone.js/dist/zone-error';  // Included with Angular CLI.
+
+
+// 'https://angular-data-base-personal.firebaseio.com/'  - fbDbUrl:
+
+//  'mongodb://localhost:27017/personal'  - fbDbUrl:
+
+// localhost:8000/api/auth/users

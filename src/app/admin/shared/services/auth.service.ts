@@ -68,3 +68,5 @@ export class AuthService {
 // `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${environment.apiKey}`
 
 // 'http://localhost:8000/users/login'
+
+//  'http://localhost:8000/api/auth/login'

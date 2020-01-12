@@ -1,1 +1,44 @@
-<p>dashboard-page works!</p>
+<div *ngIf="users.length; else loading">
+<div class="form-control">
+  <label>
+    <input type="text" placeholder="Найти пользователя..." [(ngModel)]="searchStr">
+  </label>
+</div>
+<table>
+  <thead>
+  <tr>
+    <th>№ п/п</th>
+    <th>Фамилия</th>
+    <th>Город проживания</th>
+    <th>Компания</th>
+    <th>Телефон</th>
+    <th>Дата</th>
+    <th>Действие</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let user of users | searchUsers:searchStr; let idx = index">
+    <td>{{idx + 1}}</td>
+    <td>{{user.surname}}</td>
+    <td>{{user.city}}</td>
+    <td>{{user.company}}</td>
+    <td>{{user.phone}}</td>
+    <td>{{user.date | date: 'medium'}}</td>
+    <td>
+      <button
+        class="btn btn-link open"
+      [routerLink]="['/admin', 'user', user.id, 'edit']"
+      >
+        Открыть
+      </button>
+      <a (click)="remove(user.id)">Удалить</a>
+    </td>
+  </tr>
+  </tbody>
+</table>
+
+</div>
+
+<ng-template #loading>
+  <p class="text-center">Данные загружаются...</p>
+</ng-template>
