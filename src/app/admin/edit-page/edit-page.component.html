@@ -1,1 +1,143 @@
-<p>edit-page works!</p>
+<div class="editor" *ngIf="form; else loading">
+  <form [formGroup]="form" (ngSubmit)="submit()">
+
+    <div
+      class="form-control"
+      [ngClass]="{invalid: form.get('surname').touched && form.get('surname').invalid}"
+    >
+      <label for="surname"> Фамилия
+        <input id="surname" type="text" formControlName="surname">
+      </label>
+      <div
+        *ngIf="form.get('surname').touched && form.get('surname').invalid"
+        class="validation"
+      >
+        <small *ngIf="form.get('surname').errors.required">
+          Введите фамилию
+        </small>
+      </div>
+    </div>
+
+    <div
+      class="form-control"
+      [ngClass]="{invalid: form.get('name').touched && form.get('name').invalid}"
+    >
+      <label for="name"> Имя
+        <input id="name" type="text" formControlName="name">
+      </label>
+      <div
+        *ngIf="form.get('name').touched && form.get('name').invalid"
+        class="validation"
+      >
+        <small *ngIf="form.get('name').errors.required">
+          Введите имя
+        </small>
+      </div>
+    </div>
+
+    <div
+      class="form-control"
+      [ngClass]="{invalid: form.get('city').touched && form.get('city').invalid}"
+    >
+      <label for="city"> Город проживания
+        <input id="city" type="text" formControlName="city">
+      </label>
+      <div
+        *ngIf="form.get('city').touched && form.get('city').invalid"
+        class="validation"
+      >
+        <small *ngIf="form.get('city').errors.required">
+          Введите город
+        </small>
+      </div>
+    </div>
+
+    <div
+      class="form-control"
+      [ngClass]="{invalid: form.get('company').touched && form.get('company').invalid}"
+    >
+      <label for="company"> Место работы(компания)
+        <input id="company" type="text" formControlName="company">
+      </label>
+      <div
+        *ngIf="form.get('company').touched && form.get('company').invalid"
+        class="validation"
+      >
+        <small *ngIf="form.get('company').errors.required">
+          введите место работы
+        </small>
+      </div>
+    </div>
+
+    <div
+      class="form-control"
+      [ngClass]="{invalid: form.get('email').touched && form.get('email').invalid}"
+    >
+      <label for="email"> E-mail
+        <input id="email" type="email" formControlName="email">
+      </label>
+      <div
+        *ngIf="form.get('email').touched && form.get('email').invalid"
+        class="validation"
+      >
+        <small *ngIf="form.get('email').errors.required">
+          Введите E-mail
+        </small>
+        <small *ngIf="form.get('email').errors.email">
+          Введите корректный E-mail
+        </small>
+      </div>
+    </div>
+
+    <div
+      class="form-control"
+      [ngClass]="{invalid: form.get('password').touched && form.get('password').invalid}"
+    >
+      <label for="password"> Password
+        <input id="password" type="email" formControlName="password">
+      </label>
+      <div
+        *ngIf="form.get('password').touched && form.get('password').invalid"
+        class="validation"
+      >
+        <small *ngIf="form.get('password').errors.required">
+          Введите пароль
+        </small>
+        <small *ngIf="form.get('password').errors.email">
+          Введите корректный E-mail
+        </small>
+      </div>
+    </div>
+
+    <div
+      class="form-control"
+      [ngClass]="{invalid: form.get('phone').touched && form.get('phone').invalid}"
+    >
+      <label for="phone"> Контактный телефон
+        <input id="phone" type="text" formControlName="phone">
+      </label>
+      <div
+        *ngIf="form.get('phone').touched && form.get('phone').invalid"
+        class="validation"
+      >
+        <small *ngIf="form.get('phone').errors.required">
+          введите номер телефона
+        </small>
+      </div>
+    </div>
+
+
+
+    <button
+      class="btn-primary editor-submit"
+      type="submit"
+      [disabled]="form.invalid || submitted"
+    >Обновить</button>
+  </form>
+</div>
+
+
+
+<ng-template #loading>
+  <p class="text-center">Идет загрузка....</p>
+</ng-template>

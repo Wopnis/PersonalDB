@@ -32,8 +32,22 @@ export class UserService {
       }));
   }
 
+  getById(id: string): Observable<User> {
+    return this.http.get<User>(`${environment.fbDbUrl}/users/${id}.json`)
+      .pipe(map((user: User) => {
+        return {
+          ...user, id,
+        date: new Date(user.date)
+      };
+    }));
+  }
+
   remove(id: string): Observable<void> {
     return this.http.delete<void >(`${environment.fbDbUrl}/users/${id}.json`);
+  }
+
+  update(user: User): Observable<User> {
+    return this.http.patch<User>(`${environment.fbDbUrl}/users/${user.id}.json`, user);
   }
 }
 
