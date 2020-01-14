@@ -21,7 +21,7 @@ export class UserService {
   }
   getAll(): Observable<User[]> {
     return this.http.get(`${environment.fbDbUrl}/users.json`)
-      .pipe(map((response:{[key: string]: any}) => {
+      .pipe(map((response: {[key: string]: any}) => {
         return Object
           .keys(response)
         .map(key => ({
@@ -37,7 +37,7 @@ export class UserService {
       .pipe(map((user: User) => {
         return {
           ...user, id,
-        date: new Date(user.date)
+        date: new Date(user.date )
       };
     }));
   }

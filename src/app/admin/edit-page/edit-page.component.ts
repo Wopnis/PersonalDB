@@ -5,6 +5,7 @@ import {switchMap} from 'rxjs/operators';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {User} from '../../shared/interfaces';
 import {Subscription} from 'rxjs';
+import {AlertService} from '../shared/services/alert.service';
 
 @Component({
   selector: 'app-edit-page',
@@ -18,13 +19,14 @@ export class EditPageComponent implements OnInit, OnDestroy {
   uSub: Subscription;
   constructor(
     private route: ActivatedRoute,
-    private userService: UserService
+    private userService: UserService,
+    private  alert: AlertService
   ) { }
 
   ngOnInit() {
     this.route.params.pipe(
       switchMap((params: Params) => {
-        return this.userService.getById(params['id']);
+        return this.userService.getById(params.id);
       })
     ).subscribe((user: User) => {
       this.user = user;
@@ -64,6 +66,7 @@ export class EditPageComponent implements OnInit, OnDestroy {
       phone: this.form.value.phone
     }).subscribe(() => {
       this.submitted = false;
+      this.alert.success('Данные обновлены');
     });
   }
 

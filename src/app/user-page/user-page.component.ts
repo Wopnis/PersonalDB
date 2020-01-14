@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import {ActivatedRoute, Params} from '@angular/router';
+import {UserService} from '../shared/user.service';
+import {Observable} from 'rxjs';
+import {User} from '../shared/interfaces';
+import {switchMap} from 'rxjs/operators';
 
 @Component({
   selector: 'app-user-page',
@@ -6,10 +11,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./user-page.component.scss']
 })
 export class UserPageComponent implements OnInit {
-
-  constructor() { }
+  user$: Observable<User> ;
+  constructor(
+    private route: ActivatedRoute,
+    private userService: UserService
+  ) { }
 
   ngOnInit() {
+    this.user$ = this.route.params
+      .pipe(switchMap((params: Params) => {
+          return this.userService.getById(params.id);
+      }
+      ));
   }
 
 }

@@ -2,6 +2,7 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {UserService} from '../../shared/user.service';
 import {User} from '../../shared/interfaces';
 import {Subscription} from 'rxjs';
+import {AlertService} from '../shared/services/alert.service';
 
 @Component({
   selector: 'app-dashboard-page',
@@ -14,8 +15,10 @@ export class DashboardPageComponent implements OnInit, OnDestroy {
   dsub: Subscription;
   searchStr = '';
 
-  constructor(private userService: UserService) {
-  }
+  constructor(
+    private userService: UserService,
+    private  alert: AlertService
+  ) {}
 
   ngOnInit() {
     this.uSub = this.userService.getAll().subscribe(users => {
@@ -27,6 +30,7 @@ export class DashboardPageComponent implements OnInit, OnDestroy {
     // @ts-ignore
     this.dsub = this.userService.remove(id)._subscribe(() => {
       this.users = this.users.filter(user => user.id !== id);
+      this.alert.warning('Пользователь удален');
     });
   }
 

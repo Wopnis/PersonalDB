@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {User} from '../../shared/interfaces';
 import {UserService} from '../../shared/user.service';
+import {AlertService} from '../shared/services/alert.service';
 
 @Component({
   selector: 'app-create-page',
@@ -11,7 +12,10 @@ import {UserService} from '../../shared/user.service';
 export class CreatePageComponent implements OnInit {
   form: FormGroup;
 
-  constructor(private userService: UserService) { }
+  constructor(
+    private userService: UserService,
+    private  alert: AlertService
+    ) { }
 
   ngOnInit() {
     this.form = new FormGroup({
@@ -39,6 +43,7 @@ export class CreatePageComponent implements OnInit {
     };
     this.userService.create(user).subscribe(() => {
       this.form.reset();
+      this.alert.success('Пользователь добавлен');
     });
     console.log(user);
   }

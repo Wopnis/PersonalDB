@@ -1,12 +1,12 @@
 <div class="card">
   <div class="card-header">
-    <h3>User surname</h3>
-    <small>user.country</small>
-    <small>user.city</small>
+    <h3>{{user.surname}}</h3>
+    <small>{{user.city}}</small>
+    <small>Место работы: {{user.company}}</small>
   </div>
-
-  <small>user.dateOfBirth</small>
+  <small>Дата регистрации:</small>
+  <small>{{user.date | date: 'dd.MM.yyyy'}}</small>
   <button
-    [routerLink]="['/user', 123]"
+    [routerLink]="['/user', user.id]"
     class="btn-dark">Подробнее</button>
 </div>
