@@ -2,26 +2,26 @@
 
   <div class="user">
     <div class="header">
-      <h2>Фамилия</h2>
+      <h2>Фамилия:</h2>
       <h3>{{user.surname}}</h3>
-      <button routerLink="/" class="btn btn-link">На главную</button>
+      <button routerLink="/" class="btn btn-link link">На главную</button>
     </div>
     <div class="info">
-      <h3>Имя</h3>
+      <h3>Имя:</h3>
       <p>{{user.name}}</p>
-      <h3>Город</h3>
+      <h4>Город:</h4>
       <p>{{user.city}}</p>
-      <h4>Дата регистрации</h4>
+      <h4>Дата регистрации:</h4>
       <p>{{user.date | date:'medium': null: 'ru'}}</p>
     </div>
     <div class="ownData">
-      <h4>Номер телефона</h4>
+      <h4>Номер телефона:</h4>
       <p>{{user.phone}}</p>
-      <h4>Электронная почта</h4>
+      <h4>Электронная почта:</h4>
       <p>{{user.email}}</p>
-      <h4>Место работы</h4>
+      <h4>Место работы:</h4>
       <p>{{user.company}}</p>
-      <h3>Номер в базе</h3>
+      <h4>Номер в базе:</h4>
       <p>{{user.id}}</p>
     </div>
   </div>
